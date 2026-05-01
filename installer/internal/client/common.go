@@ -29,7 +29,7 @@ model_provider = "designapi"
 [model_providers.designapi]
 name = "DesignAPI"
 base_url = %q
-wire_api = "chat"
+wire_api = "responses"
 env_key = "OPENAI_API_KEY"
 `, model, baseURL)
 	if err := os.WriteFile(filepath.Join(dir, "config.toml"), []byte(cfg), 0o644); err != nil {

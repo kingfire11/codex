@@ -25,7 +25,7 @@ model_provider = "designapi"
 [model_providers.designapi]
 name = "DesignAPI"
 base_url = "$BaseUrl"
-wire_api = "chat"
+wire_api = "responses"
 env_key = "OPENAI_API_KEY"
 "@ | Set-Content -Path $ConfigPath -Encoding UTF8
 

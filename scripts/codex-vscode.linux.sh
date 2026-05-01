@@ -27,7 +27,7 @@ model_provider = "designapi"
 [model_providers.designapi]
 name = "DesignAPI"
 base_url = "$BASE_URL"
-wire_api = "chat"
+wire_api = "responses"
 env_key = "OPENAI_API_KEY"
 EOF
 
