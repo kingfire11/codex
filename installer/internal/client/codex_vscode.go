@@ -3,6 +3,7 @@ package client
 import (
 	"os"
 	"path/filepath"
+	"runtime"
 
 	"github.com/kingfire11/codex/installer/internal/shell"
 )
@@ -34,12 +35,19 @@ func (c *codexVSCode) Install(token, baseURL, model string) error {
 	if !isWindows() {
 		envPath := codexDir() + "/designapi.env"
 		_ = shell.AddEnvHook(envPath)
-		// VS Code Server (remote)
 		h, _ := os.UserHomeDir()
 		serverEnv := filepath.Join(h, ".vscode-server", "server-env-setup")
 		if _, err := os.Stat(filepath.Dir(serverEnv)); err == nil {
 			_ = shell.AppendOnce(serverEnv, "# designapi.ink\n. \""+envPath+"\"\n")
 		}
+	}
+	// macOS: VS Code из Dock не читает ~/.zshrc — env прокидываем через LaunchAgent.
+	if runtime.GOOS == "darwin" {
+		_ = installLaunchAgent(token, baseURL)
+	}
+	if runtime.GOOS == "windows" {
+		setUserEnv("OPENAI_API_KEY", token)
+		setUserEnv("OPENAI_BASE_URL", baseURL)
 	}
 	return nil
 }

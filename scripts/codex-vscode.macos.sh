@@ -42,6 +42,31 @@ export OPENAI_BASE_URL="$BASE_URL"
 EOF
 chmod 600 "$ENV_PATH"
 
+# macOS: GUI-приложения (включая VS Code из Dock) не читают ~/.zshrc.
+# Прокидываем env через launchctl + LaunchAgent, чтобы Codex-расширение увидело OPENAI_API_KEY.
+if [[ "$(uname)" == "Darwin" ]]; then
+  LA_DIR="${HOME}/Library/LaunchAgents"
+  LA_PLIST="${LA_DIR}/ink.designapi.codex.plist"
+  mkdir -p "$LA_DIR"
+  cat > "$LA_PLIST" <<EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0"><dict>
+  <key>Label</key><string>ink.designapi.codex</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/sh</string><string>-c</string>
+    <string>launchctl setenv OPENAI_API_KEY "$API_KEY"; launchctl setenv OPENAI_BASE_URL "$BASE_URL"</string>
+  </array>
+  <key>RunAtLoad</key><true/>
+</dict></plist>
+EOF
+  launchctl unload "$LA_PLIST" 2>/dev/null || true
+  launchctl load   "$LA_PLIST"
+  launchctl setenv OPENAI_API_KEY  "$API_KEY"
+  launchctl setenv OPENAI_BASE_URL "$BASE_URL"
+fi
+
 # VS Code remote (server) — пробрасываем env при подключении
 if [[ -d "${HOME}/.vscode-server" ]]; then
   if [[ -f "$VSCODE_SERVER_ENV" ]]; then
