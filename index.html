@@ -67,6 +67,11 @@ chmod +x ./designapi-installer-linux-amd64
 Unblock-File .\designapi-installer-windows-amd64.exe
 .\designapi-installer-windows-amd64.exe doctor --token=YOUR_API_KEY</pre><button class="copy">copy</button></div>
       <p class="hint">SmartScreen может предупредить «Windows protected your PC» → «More info» → «Run anyway».</p>
+      <p class="hint">Если Execution Policy блокирует скачанный <code>.ps1</code>-скрипт — запустите так (или используйте однострочник <code>iwr ... | iex</code> ниже, он обходит политику):</p>
+      <div class="code"><pre>powershell -ExecutionPolicy Bypass -File .\designapi-codex-vscode.ps1</pre><button class="copy">copy</button></div>
+      <p class="hint">Перед повторным запуском закройте VS Code полностью (включая фоновые процессы):</p>
+      <div class="code"><pre>taskkill /IM Code.exe /F</pre><button class="copy">copy</button></div>
+      <p class="hint">Антивирус может удалить unsigned <code>.exe</code> в карантин — это нормальная реакция на отсутствие подписи. Восстановите файл из карантина и добавьте в исключения, либо используйте однострочник в секции «Или вставьте команду в терминал» (он не требует исполняемого файла).</p>
 
       <h3>Что делает</h3>
       <ul class="steps">
