@@ -21,7 +21,7 @@ function currentToken() {
   return v || PLACEHOLDER_TOKEN;
 }
 function currentModel() {
-  return modelSelect.value || "gpt-4o-mini";
+  return modelSelect.value || "gpt-5.5";
 }
 
 function fill(text) {

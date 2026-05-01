@@ -14,7 +14,7 @@ import (
 var version = "dev"
 
 const defaultBaseURL = "https://api.designapi.ink/v1"
-const defaultModel = "gpt-4o-mini"
+const defaultModel = "gpt-5.5"
 
 func main() {
 	var (
