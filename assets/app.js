@@ -50,14 +50,28 @@ function render() {
   document.querySelectorAll("pre[data-oneliner]").forEach(pre => {
     pre.textContent = oneliner(pre.dataset.oneliner);
   });
-  // installer run-команда
-  document.querySelectorAll("pre[data-tpl='installer-run']").forEach(pre => {
+  // installer run-команды (macOS / Linux / Windows)
+  const tok = currentToken();
+  document.querySelectorAll("pre[data-oneliner-mac]").forEach(pre => {
+    const arch = (navigator.userAgent || "").includes("ARM") || /arm/i.test(navigator.platform || "")
+      ? "arm64" : "amd64";
     pre.textContent =
-`# macOS / Linux
-chmod +x ./designapi-installer-* && ./designapi-installer-* --token=${currentToken()}
-
-# Windows (PowerShell)
-.\\designapi-installer-windows-amd64.exe --token=${currentToken()}`;
+`cd ~/Downloads
+xattr -d com.apple.quarantine ./designapi-installer-darwin-${arch} 2>/dev/null || true
+chmod +x ./designapi-installer-darwin-${arch}
+./designapi-installer-darwin-${arch} doctor --token=${tok}`;
+  });
+  document.querySelectorAll("pre[data-oneliner-linux]").forEach(pre => {
+    pre.textContent =
+`cd ~/Downloads
+chmod +x ./designapi-installer-linux-amd64
+./designapi-installer-linux-amd64 doctor --token=${tok}`;
+  });
+  document.querySelectorAll("pre[data-oneliner-win]").forEach(pre => {
+    pre.textContent =
+`cd $HOME\\Downloads
+Unblock-File .\\designapi-installer-windows-amd64.exe
+.\\designapi-installer-windows-amd64.exe doctor --token=${tok}`;
   });
   // статичные блоки — оставляем как есть
   document.querySelectorAll("pre[data-static]").forEach(pre => {

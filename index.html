@@ -46,9 +46,35 @@
       <a id="dl-linux-arm" class="btn"         href="#">Linux · arm64</a>
       <a id="dl-win-x64"   class="btn"         href="#">Windows · x64</a>
     </div>
-    <details>
-      <summary>Как запустить</summary>
-      <pre data-tpl="installer-run">__INSTALLER_RUN__</pre>
+    <details open>
+      <summary>Как запустить (важно — двойной клик не сработает)</summary>
+      <h3>macOS</h3>
+      <p class="hint">macOS блокирует unsigned-бинарники. Запускаем из Terminal — три команды:</p>
+      <div class="code"><pre data-oneliner-mac>cd ~/Downloads
+xattr -d com.apple.quarantine ./designapi-installer-darwin-arm64 2>/dev/null || true
+chmod +x ./designapi-installer-darwin-arm64
+./designapi-installer-darwin-arm64 doctor --token=YOUR_API_KEY</pre><button class="copy">copy</button></div>
+      <p class="hint">Не знаете чип — выполните <code>uname -m</code>. <code>arm64</code> → берите файл <code>-arm64</code>, <code>x86_64</code> → <code>-amd64</code>. Если не тот файл, увидите <code>bad CPU type</code>.</p>
+      <p class="hint">Если macOS всё равно ругается на «неустановленного разработчика» — <b>System Settings → Privacy &amp; Security</b>, внизу нажмите «Allow Anyway» рядом с заблокированным файлом и запустите команду ещё раз.</p>
+
+      <h3>Linux</h3>
+      <div class="code"><pre data-oneliner-linux>cd ~/Downloads
+chmod +x ./designapi-installer-linux-amd64
+./designapi-installer-linux-amd64 doctor --token=YOUR_API_KEY</pre><button class="copy">copy</button></div>
+
+      <h3>Windows (PowerShell)</h3>
+      <div class="code"><pre data-oneliner-win>cd $HOME\Downloads
+Unblock-File .\designapi-installer-windows-amd64.exe
+.\designapi-installer-windows-amd64.exe doctor --token=YOUR_API_KEY</pre><button class="copy">copy</button></div>
+      <p class="hint">SmartScreen может предупредить «Windows protected your PC» → «More info» → «Run anyway».</p>
+
+      <h3>Что делает</h3>
+      <ul class="steps">
+        <li><b>doctor</b> — только проверяет связь с GPT через <code>/v1/chat/completions</code> и говорит, в чём ошибка (DNS / TLS / 401 / 429 / таймаут).</li>
+        <li><b>install</b> — то же + настраивает Codex CLI / VS Code Codex / Codex App / OpenCode (с бэкапом старых конфигов).</li>
+        <li><b>uninstall</b> — сносит наши файлы конфигов.</li>
+      </ul>
+      <p class="hint">Подставьте <code>install</code> вместо <code>doctor</code>, чтобы сразу настроить все найденные клиенты.</p>
     </details>
   </section>
 
