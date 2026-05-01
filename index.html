@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>designapi.ink — инструкция по подключению</title>
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+
+<header class="hero">
+  <div class="container">
+    <h1>designapi<span class="dot">.</span>ink</h1>
+    <p class="lead">Подключение Codex / OpenCode к нашему API. Скрипты генерируются прямо в браузере — токен никуда не уходит.</p>
+
+    <div class="token-box">
+      <label for="token">Ваш API-токен</label>
+      <div class="token-row">
+        <input id="token" type="password" placeholder="sk-..." autocomplete="off" spellcheck="false" />
+        <button id="toggle-token" type="button" title="Показать/скрыть">👁</button>
+      </div>
+      <div class="model-row">
+        <label for="model">Модель по умолчанию</label>
+        <select id="model">
+          <option value="gpt-4o-mini" selected>gpt-4o-mini</option>
+          <option value="gpt-4o">gpt-4o</option>
+          <option value="gpt-4.1">gpt-4.1</option>
+          <option value="gpt-4.1-mini">gpt-4.1-mini</option>
+          <option value="o3-mini">o3-mini</option>
+        </select>
+      </div>
+      <p id="token-hint" class="hint">Введите токен, чтобы все примеры и скачиваемые файлы заполнились автоматически.</p>
+    </div>
+  </div>
+</header>
+
+<main class="container">
+
+  <section id="installer-card" class="card">
+    <h2>Готовый инсталлер</h2>
+    <p>Один файл, который сам всё настроит и проверит связь с GPT через <code>/v1/chat/completions</code>. Если не работает — расскажет почему.</p>
+    <div class="installer-buttons">
+      <a id="dl-mac-arm"   class="btn primary" href="#">macOS · Apple Silicon</a>
+      <a id="dl-mac-x64"   class="btn"         href="#">macOS · Intel</a>
+      <a id="dl-linux-x64" class="btn"         href="#">Linux · x64</a>
+      <a id="dl-linux-arm" class="btn"         href="#">Linux · arm64</a>
+      <a id="dl-win-x64"   class="btn"         href="#">Windows · x64</a>
+    </div>
+    <details>
+      <summary>Как запустить</summary>
+      <pre data-tpl="installer-run">__INSTALLER_RUN__</pre>
+    </details>
+  </section>
+
+  <section class="card">
+    <h2>Или вставьте команду в терминал</h2>
+    <nav class="tabs" data-tabs="client">
+      <button data-tab="vscode"   class="active">VS Code + Codex</button>
+      <button data-tab="cli">Codex CLI</button>
+      <button data-tab="app">Codex App</button>
+      <button data-tab="opencode">OpenCode</button>
+    </nav>
+
+    <!-- VS Code -->
+    <div class="tab-panel" data-panel="vscode">
+      <nav class="tabs sub" data-tabs="os">
+        <button data-tab="macos" class="active">macOS</button>
+        <button data-tab="linux">Linux</button>
+        <button data-tab="windows">Windows</button>
+      </nav>
+
+      <div class="tab-panel" data-panel="macos">
+        <h3>Однострочник</h3>
+        <div class="code"><pre data-oneliner="codex-vscode.macos.sh"></pre><button class="copy">copy</button></div>
+        <h3>Полный скрипт</h3>
+        <div class="code"><pre data-script="codex-vscode.macos.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-vscode.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="linux">
+        <h3>Однострочник</h3>
+        <div class="code"><pre data-oneliner="codex-vscode.linux.sh"></pre><button class="copy">copy</button></div>
+        <h3>Полный скрипт</h3>
+        <div class="code"><pre data-script="codex-vscode.linux.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-vscode.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="windows">
+        <h3>Однострочник (PowerShell)</h3>
+        <div class="code"><pre data-oneliner="codex-vscode.windows.ps1"></pre><button class="copy">copy</button></div>
+        <h3>Полный скрипт</h3>
+        <div class="code"><pre data-script="codex-vscode.windows.ps1"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-vscode.ps1">скачать .ps1</button></div>
+      </div>
+    </div>
+
+    <!-- Codex CLI -->
+    <div class="tab-panel" data-panel="cli">
+      <nav class="tabs sub" data-tabs="os">
+        <button data-tab="macos" class="active">macOS</button>
+        <button data-tab="linux">Linux</button>
+        <button data-tab="windows">Windows</button>
+      </nav>
+      <div class="tab-panel" data-panel="macos">
+        <div class="code"><pre data-oneliner="codex-cli.macos.sh"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="codex-cli.macos.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-codex-cli.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="linux">
+        <div class="code"><pre data-oneliner="codex-cli.linux.sh"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="codex-cli.linux.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-codex-cli.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="windows">
+        <div class="code"><pre data-oneliner="codex-cli.windows.ps1"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="codex-cli.windows.ps1"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-codex-cli.ps1">скачать .ps1</button></div>
+      </div>
+    </div>
+
+    <!-- Codex App -->
+    <div class="tab-panel" data-panel="app">
+      <nav class="tabs sub" data-tabs="os">
+        <button data-tab="macos" class="active">macOS</button>
+        <button data-tab="windows">Windows</button>
+      </nav>
+      <div class="tab-panel" data-panel="macos">
+        <div class="code"><pre data-oneliner="codex-app.macos.sh"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="codex-app.macos.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-codex-app.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="windows">
+        <div class="code"><pre data-oneliner="codex-app.windows.ps1"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="codex-app.windows.ps1"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-codex-app.ps1">скачать .ps1</button></div>
+      </div>
+    </div>
+
+    <!-- OpenCode -->
+    <div class="tab-panel" data-panel="opencode">
+      <nav class="tabs sub" data-tabs="os">
+        <button data-tab="macos" class="active">macOS</button>
+        <button data-tab="linux">Linux</button>
+        <button data-tab="windows">Windows</button>
+        <button data-tab="manual">Вручную</button>
+      </nav>
+      <div class="tab-panel" data-panel="macos">
+        <div class="code"><pre data-oneliner="opencode.macos.sh"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="opencode.macos.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-opencode.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="linux">
+        <div class="code"><pre data-oneliner="opencode.linux.sh"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="opencode.linux.sh"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-opencode.sh">скачать .sh</button></div>
+      </div>
+      <div class="tab-panel" data-panel="windows">
+        <div class="code"><pre data-oneliner="opencode.windows.ps1"></pre><button class="copy">copy</button></div>
+        <div class="code"><pre data-script="opencode.windows.ps1"></pre><button class="copy">copy</button><button class="dl" data-name="designapi-opencode.ps1">скачать .ps1</button></div>
+      </div>
+      <div class="tab-panel" data-panel="manual">
+        <p>Откройте <code>~/.config/opencode/opencode.json</code> и вставьте:</p>
+        <div class="code"><pre data-script="opencode.config.json"></pre><button class="copy">copy</button><button class="dl" data-name="opencode.json">скачать json</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <h2>Пошагово для VS Code</h2>
+    <ol class="steps">
+      <li>Установите расширение <b>Codex - OpenAI's coding agent</b>.</li>
+      <li><b>Не нажимайте</b> «Sign in with ChatGPT» и «Use API Key» в панели Codex.</li>
+      <li>Откройте Terminal → New Terminal в VS Code.</li>
+      <li>Вставьте однострочник из секции выше и нажмите Enter.</li>
+      <li>Полностью перезапустите VS Code.</li>
+      <li>Откройте панель Codex — должно появиться <b>«Logged in with API key»</b>.</li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Отключить интеграцию</h2>
+    <p>Удаляет наши файлы конфига. Чаты и история сессий не трогаются.</p>
+    <div class="code"><pre data-static="rm -rf ~/.codex/auth.json ~/.codex/config.toml ~/.codex/designapi.env ~/.config/opencode/opencode.json"></pre><button class="copy">copy</button></div>
+  </section>
+
+</main>
+
+<footer class="container">
+  <p>© designapi.ink · <a href="https://api.designapi.ink">api.designapi.ink</a></p>
+</footer>
+
+<script src="assets/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,151 @@
+:root {
+  --bg: #0b0d10;
+  --panel: #14171c;
+  --panel2: #1b1f26;
+  --text: #e6e8eb;
+  --muted: #8a93a0;
+  --accent: #7c5cff;
+  --accent2: #4ad991;
+  --border: #262b33;
+  --code-bg: #0f1116;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Inter", system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+  font-size: 15px;
+}
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+.container { max-width: 920px; margin: 0 auto; padding: 0 24px; }
+
+.hero {
+  padding: 72px 0 48px;
+  background: radial-gradient(circle at top left, rgba(124,92,255,0.12), transparent 60%);
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 { font-size: 44px; margin: 0 0 8px; letter-spacing: -0.02em; }
+.hero h1 .dot { color: var(--accent); }
+.hero .lead { color: var(--muted); margin: 0 0 32px; max-width: 640px; }
+
+.token-box {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 20px;
+  max-width: 640px;
+}
+.token-box label { display: block; font-size: 13px; color: var(--muted); margin-bottom: 6px; }
+.token-row, .model-row { display: flex; gap: 8px; align-items: center; }
+.model-row { margin-top: 14px; }
+.model-row label { margin: 0 8px 0 0; }
+.token-row input, .model-row select {
+  flex: 1;
+  background: var(--code-bg);
+  color: var(--text);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 14px;
+}
+.token-row button {
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+.hint { color: var(--muted); font-size: 13px; margin: 12px 0 0; }
+
+main.container { padding-top: 32px; padding-bottom: 64px; }
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+.card h2 { margin: 0 0 8px; font-size: 22px; }
+.card h3 { margin: 18px 0 8px; font-size: 14px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.tabs {
+  display: flex; flex-wrap: wrap; gap: 4px;
+  border-bottom: 1px solid var(--border);
+  margin: 12px 0 16px;
+}
+.tabs.sub { margin-top: 0; }
+.tabs button {
+  background: transparent;
+  color: var(--muted);
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: inherit;
+}
+.tabs button.active { color: var(--text); border-bottom-color: var(--accent); }
+
+.tab-panel { }
+
+.code {
+  position: relative;
+  background: var(--code-bg);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin: 8px 0 14px;
+  overflow: hidden;
+}
+.code pre {
+  margin: 0;
+  padding: 14px 16px;
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 13px;
+  line-height: 1.5;
+  white-space: pre;
+  overflow-x: auto;
+  color: #d6d9df;
+}
+.code button {
+  position: absolute; top: 8px; right: 8px;
+  background: var(--panel2);
+  color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.code button.dl { right: 64px; }
+.code button:hover { color: var(--text); }
+
+.installer-buttons { display: flex; flex-wrap: wrap; gap: 10px; margin: 14px 0 6px; }
+.btn {
+  display: inline-block;
+  padding: 10px 16px;
+  border-radius: 10px;
+  background: var(--panel2);
+  color: var(--text);
+  border: 1px solid var(--border);
+  font-size: 14px;
+}
+.btn:hover { background: #232831; text-decoration: none; }
+.btn.primary { background: var(--accent); border-color: var(--accent); color: white; }
+.btn.primary:hover { filter: brightness(1.1); }
+
+details summary { cursor: pointer; color: var(--muted); margin-top: 10px; }
+
+.steps { margin: 0; padding-left: 20px; }
+.steps li { margin-bottom: 8px; }
+
+footer { padding: 32px 24px 64px; text-align: center; color: var(--muted); font-size: 13px; }
+
+code { background: var(--code-bg); padding: 1px 6px; border-radius: 4px; font-size: 13px; }

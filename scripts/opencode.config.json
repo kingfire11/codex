@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "designapi": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "DesignAPI",
+      "options": {
+        "baseURL": "__BASE_URL__/v1",
+        "apiKey": "__API_KEY__"
+      },
+      "models": {
+        "__MODEL__": { "name": "__MODEL__" }
+      }
+    }
+  }
+}
