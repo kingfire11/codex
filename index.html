@@ -191,9 +191,20 @@ Unblock-File .\designapi-installer-windows-amd64.exe
       <li><b>Не нажимайте</b> «Sign in with ChatGPT» и «Use API Key» в панели Codex.</li>
       <li>Откройте Terminal → New Terminal в VS Code.</li>
       <li>Вставьте однострочник из секции выше и нажмите Enter.</li>
-      <li>Полностью перезапустите VS Code.</li>
-      <li>Откройте панель Codex — должно появиться <b>«Logged in with API key»</b>.</li>
+      <li>
+        <b>Полностью закройте VS Code</b> (Cmd+Q на mac, или закройте все окна на Windows).
+        Просто закрыть окно — недостаточно: VS Code висит в Dock/трее и держит старое окружение.
+      </li>
+      <li>
+        Откройте VS Code <b>заново</b>. На macOS лучше из Terminal командой ниже — иначе процесс не подхватит свежий <code>OPENAI_API_KEY</code>:
+        <div class="code"><pre>source ~/.codex/designapi.env &amp;&amp; open -a "Visual Studio Code"</pre><button class="copy">copy</button></div>
+      </li>
+      <li>
+        Откройте панель Codex — должно появиться <b>«Logged in with API key»</b>.
+        Если всё ещё <code>Missing environment variable: OPENAI_API_KEY</code> — VS Code открыт из старой сессии. Закройте через <code>osascript -e 'quit app "Visual Studio Code"'</code> и повторите шаг 6.
+      </li>
     </ol>
+    <p class="hint"><b>Почему так:</b> на macOS приложения, запущенные из Dock/Spotlight, не читают <code>~/.zshrc</code> и не видят переменные окружения, добавленные в shell. Скрипт прописывает env в LaunchAgent, но он применится только к процессам, запущенным <b>после</b> закрытия старого VS Code.</p>
   </section>
 
   <section class="card">

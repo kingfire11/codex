@@ -101,5 +101,10 @@ fi
 
 echo
 echo "✅ VS Code Codex extension configured for designapi.ink"
-echo "   1) Полностью перезапусти VS Code"
-echo "   2) Открой панель Codex — должно быть «Logged in with API key»"
+echo
+echo "ВАЖНО — иначе VS Code не увидит ключ:"
+echo "  1) Полностью закройте VS Code:    osascript -e 'quit app \"Visual Studio Code\"'"
+echo "     (или Cmd+Q, дождитесь чтобы пропал из Dock)"
+echo "  2) Откройте VS Code этой командой (она передаст env в процесс):"
+echo "     source \"$ENV_PATH\" && open -a 'Visual Studio Code'"
+echo "  3) В панели Codex должно быть «Logged in with API key»."
